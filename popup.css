@@ -80,15 +80,65 @@ body {
   margin: 0 4px;
 }
 
-.emoji-bar {
+.emoji-section {
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.emoji-tabs {
   display: flex;
-  gap: 2px;
+  gap: 0;
+  background: #16213e;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.emoji-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.emoji-tab {
+  border: none;
+  background: transparent;
+  color: #888;
+  font-size: 11px;
+  padding: 6px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.emoji-tab:hover {
+  color: #ccc;
+  background: rgba(255,255,255,0.05);
+}
+
+.emoji-tab.active {
+  color: #fff;
+  border-bottom-color: #0077b5;
+}
+
+.emoji-panels {
+  padding: 6px;
+  min-height: 72px;
+}
+
+.emoji-panel {
+  display: none;
   flex-wrap: wrap;
+  gap: 2px;
+}
+
+.emoji-panel.active {
+  display: flex;
 }
 
 .emoji-btn {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border: none;
   background: transparent;
   font-size: 16px;
@@ -101,8 +151,8 @@ body {
 }
 
 .emoji-btn:hover {
-  background: #16213e;
-  transform: scale(1.15);
+  background: #0f3460;
+  transform: scale(1.2);
 }
 
 #input {

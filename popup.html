@@ -25,17 +25,23 @@
       <button id="btn-clear" class="tool-btn" title="Clear formatting">✕</button>
     </div>
 
-    <div class="emoji-bar">
-      <button class="emoji-btn" data-emoji="🎯">🎯</button>
-      <button class="emoji-btn" data-emoji="💡">💡</button>
-      <button class="emoji-btn" data-emoji="🚀">🚀</button>
-      <button class="emoji-btn" data-emoji="✅">✅</button>
-      <button class="emoji-btn" data-emoji="👉">👉</button>
-      <button class="emoji-btn" data-emoji="📌">📌</button>
-      <button class="emoji-btn" data-emoji="🔥">🔥</button>
-      <button class="emoji-btn" data-emoji="✨">✨</button>
-      <button class="emoji-btn" data-emoji="💪">💪</button>
-      <button class="emoji-btn" data-emoji="⚡">⚡</button>
+    <div class="emoji-section">
+      <div class="emoji-tabs">
+        <button class="emoji-tab active" data-tab="frequent">⭐ Frequent</button>
+        <button class="emoji-tab" data-tab="business">💼 Business</button>
+        <button class="emoji-tab" data-tab="reactions">😊 Reactions</button>
+        <button class="emoji-tab" data-tab="symbols">🔹 Symbols</button>
+        <button class="emoji-tab" data-tab="tech">💻 Tech</button>
+        <button class="emoji-tab" data-tab="hands">🤝 Hands</button>
+      </div>
+      <div class="emoji-panels">
+        <div class="emoji-panel active" data-panel="frequent"></div>
+        <div class="emoji-panel" data-panel="business"></div>
+        <div class="emoji-panel" data-panel="reactions"></div>
+        <div class="emoji-panel" data-panel="symbols"></div>
+        <div class="emoji-panel" data-panel="tech"></div>
+        <div class="emoji-panel" data-panel="hands"></div>
+      </div>
     </div>
 
     <textarea id="input" placeholder="Type or paste your post here..."></textarea>
