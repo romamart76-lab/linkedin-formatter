@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Post Formatter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>✍️ Post Formatter</h1>
+      <span class="badge">for LinkedIn</span>
+    </div>
+
+    <div class="toolbar">
+      <button id="btn-bold" class="tool-btn" title="Bold (Ctrl+B)"><strong>B</strong></button>
+      <button id="btn-italic" class="tool-btn" title="Italic (Ctrl+I)"><em>I</em></button>
+      <button id="btn-bolditalic" class="tool-btn" title="Bold Italic"><strong><em>BI</em></strong></button>
+      <div class="separator"></div>
+      <button id="btn-bullet" class="tool-btn" title="Bullet point">•</button>
+      <button id="btn-numbered" class="tool-btn" title="Numbered list">1.</button>
+      <button id="btn-line" class="tool-btn" title="Line break">↵</button>
+      <div class="separator"></div>
+      <button id="btn-clear" class="tool-btn" title="Clear formatting">✕</button>
+    </div>
+
+    <div class="emoji-bar">
+      <button class="emoji-btn" data-emoji="🎯">🎯</button>
+      <button class="emoji-btn" data-emoji="💡">💡</button>
+      <button class="emoji-btn" data-emoji="🚀">🚀</button>
+      <button class="emoji-btn" data-emoji="✅">✅</button>
+      <button class="emoji-btn" data-emoji="👉">👉</button>
+      <button class="emoji-btn" data-emoji="📌">📌</button>
+      <button class="emoji-btn" data-emoji="🔥">🔥</button>
+      <button class="emoji-btn" data-emoji="✨">✨</button>
+      <button class="emoji-btn" data-emoji="💪">💪</button>
+      <button class="emoji-btn" data-emoji="⚡">⚡</button>
+    </div>
+
+    <textarea id="input" placeholder="Type or paste your post here..."></textarea>
+
+    <div class="output-section">
+      <div class="output-header">
+        <span>Preview</span>
+        <span id="char-count" class="char-count">0 / 3,000</span>
+      </div>
+      <div id="output" class="output"></div>
+    </div>
+
+    <div class="actions">
+      <button id="btn-copy" class="action-btn primary">📋 Copy to Clipboard</button>
+    </div>
+
+    <div id="toast" class="toast hidden">Copied!</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
