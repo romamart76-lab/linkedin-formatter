@@ -23,6 +23,79 @@ for (let i = 0; i < 10; i++) {
   BOLD_ITALIC_MAP[digit] = String.fromCodePoint(0x1D7CE + i);
 }
 
+// Underline: combining underline character U+0332
+const UNDERLINE_MAP = {};
+for (let i = 32; i < 127; i++) {
+  const ch = String.fromCharCode(i);
+  UNDERLINE_MAP[ch] = ch + '\u0332';
+}
+
+// Strikethrough: combining strikethrough U+0336
+const STRIKETHROUGH_MAP = {};
+for (let i = 32; i < 127; i++) {
+  const ch = String.fromCharCode(i);
+  STRIKETHROUGH_MAP[ch] = ch + '\u0336';
+}
+
+// Monospace: Mathematical Monospace (U+1D670)
+const MONO_MAP = {};
+for (let i = 0; i < 26; i++) {
+  MONO_MAP[String.fromCharCode(65 + i)] = String.fromCodePoint(0x1D670 + i);
+  MONO_MAP[String.fromCharCode(97 + i)] = String.fromCodePoint(0x1D68A + i);
+}
+for (let i = 0; i < 10; i++) {
+  MONO_MAP[String.fromCharCode(48 + i)] = String.fromCodePoint(0x1D7F6 + i);
+}
+
+// Script/Cursive: Mathematical Script (U+1D49C)
+const SCRIPT_MAP = {};
+for (let i = 0; i < 26; i++) {
+  SCRIPT_MAP[String.fromCharCode(65 + i)] = String.fromCodePoint(0x1D49C + i);
+  SCRIPT_MAP[String.fromCharCode(97 + i)] = String.fromCodePoint(0x1D4B6 + i);
+}
+// Fix known script exceptions
+SCRIPT_MAP['B'] = '\u212C'; // ℬ
+SCRIPT_MAP['E'] = '\u2130'; // ℰ
+SCRIPT_MAP['F'] = '\u2131'; // ℱ
+SCRIPT_MAP['H'] = '\u210B'; // ℋ
+SCRIPT_MAP['I'] = '\u2110'; // ℐ
+SCRIPT_MAP['L'] = '\u2112'; // ℒ
+SCRIPT_MAP['M'] = '\u2133'; // ℳ
+SCRIPT_MAP['R'] = '\u211B'; // ℛ
+SCRIPT_MAP['e'] = '\u212F'; // ℯ
+SCRIPT_MAP['g'] = '\u210A'; // ℊ
+SCRIPT_MAP['o'] = '\u2134'; // ℴ
+
+// Double-Struck: Mathematical Double-Struck (U+1D538)
+const DOUBLE_MAP = {};
+for (let i = 0; i < 26; i++) {
+  DOUBLE_MAP[String.fromCharCode(65 + i)] = String.fromCodePoint(0x1D538 + i);
+  DOUBLE_MAP[String.fromCharCode(97 + i)] = String.fromCodePoint(0x1D552 + i);
+}
+for (let i = 0; i < 10; i++) {
+  DOUBLE_MAP[String.fromCharCode(48 + i)] = String.fromCodePoint(0x1D7D8 + i);
+}
+// Fix known double-struck exceptions
+DOUBLE_MAP['C'] = '\u2102'; // ℂ
+DOUBLE_MAP['H'] = '\u210D'; // ℍ
+DOUBLE_MAP['N'] = '\u2115'; // ℕ
+DOUBLE_MAP['P'] = '\u2119'; // ℙ
+DOUBLE_MAP['Q'] = '\u211A'; // ℚ
+DOUBLE_MAP['R'] = '\u211D'; // ℝ
+DOUBLE_MAP['Z'] = '\u2124'; // ℤ
+
+// All format maps for easy reference
+const ALL_MAPS = {
+  bold: BOLD_MAP,
+  italic: ITALIC_MAP,
+  bolditalic: BOLD_ITALIC_MAP,
+  underline: UNDERLINE_MAP,
+  strikethrough: STRIKETHROUGH_MAP,
+  mono: MONO_MAP,
+  script: SCRIPT_MAP,
+  double: DOUBLE_MAP,
+};
+
 // ============================================================
 // Emoji categories
 // ============================================================
@@ -134,14 +207,17 @@ function convertText(text, charMap) {
 }
 
 function stripUnicode(text) {
-  const reverseMaps = [BOLD_MAP, ITALIC_MAP, BOLD_ITALIC_MAP];
+  // Build reverse map from all unicode format maps
   const reverseMap = {};
-  for (const map of reverseMaps) {
+  for (const [name, map] of Object.entries(ALL_MAPS)) {
+    if (name === 'underline' || name === 'strikethrough') continue; // handled separately
     for (const [ascii, unicode] of Object.entries(map)) {
       reverseMap[unicode] = ascii;
     }
   }
-  return [...text].map(ch => reverseMap[ch] || ch).join('');
+  // Remove combining characters (underline U+0332, strikethrough U+0336)
+  const cleaned = text.replace(/[\u0332\u0336]/g, '');
+  return [...cleaned].map(ch => reverseMap[ch] || ch).join('');
 }
 
 function applyFormat(charMap) {
@@ -312,6 +388,11 @@ templatesToggle.addEventListener('click', () => {
 document.getElementById('btn-bold').addEventListener('click', () => applyFormat(BOLD_MAP));
 document.getElementById('btn-italic').addEventListener('click', () => applyFormat(ITALIC_MAP));
 document.getElementById('btn-bolditalic').addEventListener('click', () => applyFormat(BOLD_ITALIC_MAP));
+document.getElementById('btn-underline').addEventListener('click', () => applyFormat(UNDERLINE_MAP));
+document.getElementById('btn-strike').addEventListener('click', () => applyFormat(STRIKETHROUGH_MAP));
+document.getElementById('btn-mono').addEventListener('click', () => applyFormat(MONO_MAP));
+document.getElementById('btn-script').addEventListener('click', () => applyFormat(SCRIPT_MAP));
+document.getElementById('btn-double').addEventListener('click', () => applyFormat(DOUBLE_MAP));
 document.getElementById('btn-bullet').addEventListener('click', () => insertBullet());
 document.getElementById('btn-numbered').addEventListener('click', () => insertNumbered());
 document.getElementById('btn-line').addEventListener('click', () => insertAtCursor('\n\n'));
@@ -323,5 +404,6 @@ input.addEventListener('keydown', (e) => {
   if (e.ctrlKey || e.metaKey) {
     if (e.key === 'b') { e.preventDefault(); applyFormat(BOLD_MAP); }
     if (e.key === 'i') { e.preventDefault(); applyFormat(ITALIC_MAP); }
+    if (e.key === 'u') { e.preventDefault(); applyFormat(UNDERLINE_MAP); }
   }
 });

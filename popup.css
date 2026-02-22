@@ -42,16 +42,17 @@ body {
 
 .toolbar {
   display: flex;
-  gap: 4px;
+  gap: 3px;
   padding: 6px;
   background: #16213e;
   border-radius: 8px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .tool-btn {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border: none;
   background: transparent;
   color: #b0b0b0;
