@@ -306,6 +306,100 @@ body {
   color: #555;
 }
 
+.preview-toggle-row {
+  display: flex;
+}
+
+.preview-toggle {
+  border: none;
+  background: transparent;
+  color: #888;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.15s;
+}
+
+.preview-toggle:hover {
+  color: #fff;
+}
+
+.linkedin-preview {
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.linkedin-preview.hidden {
+  display: none;
+}
+
+.li-card {
+  background: #1b1f23;
+  padding: 12px;
+}
+
+.li-header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.li-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0077b5, #00a0dc);
+  flex-shrink: 0;
+}
+
+.li-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.li-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.li-subtitle {
+  font-size: 11px;
+  color: #888;
+}
+
+.li-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.li-reactions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid #333;
+  font-size: 11px;
+  color: #888;
+}
+
+.li-likes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.li-count {
+  color: #888;
+}
+
 .actions {
   display: flex;
   gap: 8px;

@@ -328,6 +328,7 @@ function updatePreview() {
   charCount.textContent = `${len.toLocaleString()} / 3,000`;
   charCount.classList.toggle('warning', len > 2500 && len <= 3000);
   charCount.classList.toggle('danger', len > 3000);
+  updateLinkedInPreview();
 }
 
 async function copyToClipboard() {
@@ -352,6 +353,23 @@ function showToast(msg) {
   toast.textContent = msg;
   toast.classList.remove('hidden');
   setTimeout(() => toast.classList.add('hidden'), 1500);
+}
+
+// ============================================================
+// LinkedIn Preview
+// ============================================================
+const liPreviewToggle = document.getElementById('btn-linkedin-preview');
+const liPreview = document.getElementById('linkedin-preview');
+const liBody = document.getElementById('li-body');
+
+liPreviewToggle.addEventListener('click', () => {
+  liPreview.classList.toggle('hidden');
+  updateLinkedInPreview();
+});
+
+function updateLinkedInPreview() {
+  if (liPreview.classList.contains('hidden')) return;
+  liBody.textContent = input.value || 'Your post will appear here...';
 }
 
 // ============================================================
