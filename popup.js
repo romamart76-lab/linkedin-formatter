@@ -144,7 +144,6 @@ function getFrequentEmojis() {
 // DOM setup
 // ============================================================
 const input = document.getElementById('input');
-const output = document.getElementById('output');
 const charCount = document.getElementById('char-count');
 const toast = document.getElementById('toast');
 
@@ -322,13 +321,10 @@ function insertAtCursor(text) {
 
 function updatePreview() {
   const text = input.value;
-  output.textContent = text || '';
-
   const len = text.length;
   charCount.textContent = `${len.toLocaleString()} / 3,000`;
   charCount.classList.toggle('warning', len > 2500 && len <= 3000);
   charCount.classList.toggle('danger', len > 3000);
-  updateLinkedInPreview();
 }
 
 async function copyToClipboard() {
@@ -353,23 +349,6 @@ function showToast(msg) {
   toast.textContent = msg;
   toast.classList.remove('hidden');
   setTimeout(() => toast.classList.add('hidden'), 1500);
-}
-
-// ============================================================
-// LinkedIn Preview
-// ============================================================
-const liPreviewToggle = document.getElementById('btn-linkedin-preview');
-const liPreview = document.getElementById('linkedin-preview');
-const liBody = document.getElementById('li-body');
-
-liPreviewToggle.addEventListener('click', () => {
-  liPreview.classList.toggle('hidden');
-  updateLinkedInPreview();
-});
-
-function updateLinkedInPreview() {
-  if (liPreview.classList.contains('hidden')) return;
-  liBody.textContent = input.value || 'Your post will appear here...';
 }
 
 // ============================================================
