@@ -12,11 +12,14 @@ Make your LinkedIn posts stand out with professional formatting — no hacks, no
 LinkedIn Post Formatter uses Unicode mathematical symbols to create bold, italic, and bold-italic text that works natively in LinkedIn posts and comments.
 
 ✅ FEATURES:
-• Bold, Italic, and Bold+Italic text formatting
+• Bold, Italic, Bold+Italic, Underline, Strikethrough text formatting
+• Monospace, Script/Cursive, Double-Struck font styles
 • Bullet points and numbered lists
-• Quick emoji insert bar (10 popular emojis)
+• 88 emojis in 6 categories with Frequent tab (learns your usage)
+• 10 proven LinkedIn post templates (Hook→CTA, Listicle, Hot Take, etc.)
+• LinkedIn preview — see how your post will look before publishing
 • Character counter (LinkedIn's 3,000 limit)
-• Keyboard shortcuts (Ctrl+B, Ctrl+I)
+• Keyboard shortcuts (Ctrl+B, Ctrl+I, Ctrl+U)
 • One-click copy to clipboard
 • Dark theme UI
 
