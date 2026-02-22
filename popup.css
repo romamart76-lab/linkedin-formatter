@@ -157,6 +157,84 @@ body {
   transform: scale(1.2);
 }
 
+.templates-section {
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.templates-header {
+  background: #16213e;
+}
+
+.templates-toggle {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #b0b0b0;
+  font-size: 13px;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.templates-toggle:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.05);
+}
+
+.templates-toggle .arrow {
+  font-size: 10px;
+  transition: transform 0.2s;
+}
+
+.templates-toggle.open .arrow {
+  transform: rotate(90deg);
+}
+
+.templates-list {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.templates-list.hidden {
+  display: none;
+}
+
+.template-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #ccc;
+  font-size: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  border-top: 1px solid #1a1a2e;
+}
+
+.template-item:hover {
+  background: #0f3460;
+  color: #fff;
+}
+
+.template-item .template-name {
+  font-weight: 500;
+}
+
+.template-item .template-category {
+  font-size: 10px;
+  color: #666;
+  margin-left: 8px;
+}
+
 #input {
   width: 100%;
   min-height: 140px;

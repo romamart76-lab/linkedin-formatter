@@ -279,6 +279,34 @@ function showToast(msg) {
 }
 
 // ============================================================
+// Templates
+// ============================================================
+const templatesToggle = document.getElementById('btn-templates');
+const templatesList = document.getElementById('templates-list');
+
+if (typeof TEMPLATES !== 'undefined') {
+  for (const tmpl of TEMPLATES) {
+    const btn = document.createElement('button');
+    btn.className = 'template-item';
+    btn.innerHTML = `<span class="template-name">${tmpl.name}</span><span class="template-category">${tmpl.category}</span>`;
+    btn.addEventListener('click', () => {
+      input.value = tmpl.template;
+      input.focus();
+      updatePreview();
+      // Collapse templates after selection
+      templatesList.classList.add('hidden');
+      templatesToggle.classList.remove('open');
+    });
+    templatesList.appendChild(btn);
+  }
+}
+
+templatesToggle.addEventListener('click', () => {
+  templatesList.classList.toggle('hidden');
+  templatesToggle.classList.toggle('open');
+});
+
+// ============================================================
 // Event listeners
 // ============================================================
 document.getElementById('btn-bold').addEventListener('click', () => applyFormat(BOLD_MAP));
